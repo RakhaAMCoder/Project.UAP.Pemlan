@@ -1,0 +1,21 @@
+ID,Name,Symbol,Category,Price,Change24h,ChangePercent24h,IsFavorite
+BTC-001,Bitcoin,BTC,Currency,46890.50,523.75,1.13,true
+ETH-002,Ethereum,ETH,Platform,2485.75,45.60,1.87,true
+BNB-003,Binance Coin,BNB,Exchange,312.40,8.25,2.71,false
+ADA-004,Cardano,ADA,Platform,0.52,-0.01,-1.89,false
+SOL-005,Solana,SOL,Platform,98.60,3.45,3.63,true
+XRP-006,Ripple,XRP,Payment,0.62,0.01,1.64,false
+DOT-007,Polkadot,DOT,Platform,7.85,-0.12,-1.51,false
+DOGE-008,Dogecoin,DOGE,Meme,0.15,0.00,0.00,false
+AVAX-009,Avalanche,AVAX,Platform,36.40,1.25,3.56,false
+LINK-010,Chainlink,LINK,Oracle,14.25,0.35,2.52,false
+MATIC-011,Polygon,MATIC,Platform,0.85,0.02,2.41,false
+LTC-012,Litecoin,LTC,Currency,71.30,1.15,1.64,false
+UNI-013,Uniswap,UNI,DeFi,6.45,0.18,2.87,false
+ATOM-014,Cosmos,ATOM,Platform,9.80,-0.15,-1.51,false
+ALGO-015,Algorand,ALGO,Platform,0.18,0.00,0.00,false
+VET-016,VeChain,VET,Platform,0.03,0.00,0.00,false
+XTZ-017,Tezos,XTZ,Platform,1.05,0.01,0.96,false
+FIL-018,Filecoin,FIL,Storage,5.60,0.12,2.19,false
+ETC-019,Ethereum Classic,ETC,Currency,26.75,0.45,1.71,false
+XLM-020,Stellar,XLM,Payment,0.12,0.00,0.00,false

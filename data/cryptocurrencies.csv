@@ -1,0 +1,11 @@
+ID,Name,Symbol,Category,Price,Change24h,ChangePercent24h,IsFavorite
+BNB-003,Binance Coin,BNB,Exchange,179.81,51.81,40.47,false
+BTC-001,Bitcoin,BTC,Currency,41764.08,3464.26,9.05,false
+ADA-004,Cardano,ADA,Platform,0.55,-0.03,-5.71,false
+LINK-010,Chainlink,LINK,Oracle,15.24,0.58,3.96,false
+DOGE-007,Dogecoin,DOGE,Meme,0.16,-0.02,-10.61,false
+ETH-002,Ethereum,ETH,Platform,2684.61,149.03,5.88,false
+LTC-009,Litecoin,LTC,Currency,120.81,-23.70,-16.40,false
+DOT-006,Polkadot,DOT,Platform,8.68,-1.23,-12.44,false
+XRP-008,Ripple,XRP,Payment,0.61,0.01,1.05,false
+SOL-005,Solana,SOL,Platform,100.90,-15.16,-13.06,false
