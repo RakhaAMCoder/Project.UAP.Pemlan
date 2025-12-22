@@ -86,19 +86,19 @@ public class ReportFrame extends JFrame {
             cryptoFilterCombo.addItem(crypto.getName() + " (" + crypto.getSymbol() + ")");
         }
         cryptoFilterCombo.setBackground(new Color(50, 50, 60));
-        cryptoFilterCombo.setForeground(Color.WHITE);
+        cryptoFilterCombo.setForeground(Color.black);
         cryptoFilterCombo.addActionListener(e -> filterHistory());
 
         dateFilterCombo = new JComboBox<>(new String[]{
                 "Today", "Last 7 Days", "Last 30 Days", "All Time"
         });
         dateFilterCombo.setBackground(new Color(50, 50, 60));
-        dateFilterCombo.setForeground(Color.WHITE);
+        dateFilterCombo.setForeground(Color.black);
         dateFilterCombo.addActionListener(e -> filterHistory());
 
         JButton exportBtn = new JButton("Export Report");
         exportBtn.setBackground(new Color(70, 130, 180));
-        exportBtn.setForeground(Color.WHITE);
+        exportBtn.setForeground(Color.black);
         exportBtn.addActionListener(e -> exportReport());
 
         filterPanel.add(new JLabel("Filter by:"));
@@ -186,7 +186,7 @@ public class ReportFrame extends JFrame {
         historyTable.setForeground(new Color(220, 220, 220));
         historyTable.setRowHeight(35);
         historyTable.getTableHeader().setBackground(new Color(50, 50, 60));
-        historyTable.getTableHeader().setForeground(Color.WHITE);
+        historyTable.getTableHeader().setForeground(Color.black);
         historyTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
 
         // Add some sample data

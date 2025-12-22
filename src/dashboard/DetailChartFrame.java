@@ -47,12 +47,12 @@ public class DetailChartFrame extends JFrame {
 
         timeframeCombo = new JComboBox<>(new String[]{"1 Minute", "5 Minutes", "15 Minutes", "1 Hour", "1 Day"});
         timeframeCombo.setBackground(new Color(50, 50, 60));
-        timeframeCombo.setForeground(Color.WHITE);
+        timeframeCombo.setForeground(Color.black);
         timeframeCombo.addActionListener(e -> updateChart());
 
         JButton exportBtn = new JButton("Export Data");
         exportBtn.setBackground(new Color(70, 130, 180));
-        exportBtn.setForeground(Color.WHITE);
+        exportBtn.setForeground(Color.black);
         exportBtn.addActionListener(e -> exportData());
 
         controlsPanel.add(new JLabel("Timeframe:"));

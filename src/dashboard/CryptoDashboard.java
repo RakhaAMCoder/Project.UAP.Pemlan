@@ -93,7 +93,7 @@ public class CryptoDashboard extends JFrame {
         // Search field
         searchField = new JTextField(20);
         searchField.setBackground(new Color(50, 50, 60));
-        searchField.setForeground(Color.WHITE);
+        searchField.setForeground(Color.black);
         searchField.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(70, 70, 80)),
                 BorderFactory.createEmptyBorder(5, 10, 5, 10)
@@ -108,7 +108,7 @@ public class CryptoDashboard extends JFrame {
         // Sort combo box
         sortComboBox = new JComboBox<>(new String[]{"Sort by Name", "Sort by Price", "Sort by Change"});
         sortComboBox.setBackground(new Color(50, 50, 60));
-        sortComboBox.setForeground(Color.WHITE);
+        sortComboBox.setForeground(Color.black);
         sortComboBox.addActionListener(e -> sortTable());
 
         // Refresh button
@@ -144,7 +144,7 @@ public class CryptoDashboard extends JFrame {
         cryptoTable.setForeground(new Color(220, 220, 220));
         cryptoTable.setRowHeight(40);
         cryptoTable.getTableHeader().setBackground(new Color(50, 50, 60));
-        cryptoTable.getTableHeader().setForeground(Color.WHITE);
+        cryptoTable.getTableHeader().setForeground(Color.black);
         cryptoTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
 
         // Add action buttons to table
@@ -340,7 +340,7 @@ public class CryptoDashboard extends JFrame {
         public ButtonRenderer() {
             setOpaque(true);
             setBackground(new Color(70, 130, 180));
-            setForeground(Color.WHITE);
+            setForeground(Color.black);
             setText("View Chart");
         }
 
@@ -369,7 +369,7 @@ public class CryptoDashboard extends JFrame {
             label = (value == null) ? "" : value.toString();
             button.setText(label);
             button.setBackground(new Color(70, 130, 180));
-            button.setForeground(Color.WHITE);
+            button.setForeground(Color.black);
             isPushed = true;
             return button;
         }

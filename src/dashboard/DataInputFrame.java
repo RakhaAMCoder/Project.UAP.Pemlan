@@ -120,7 +120,7 @@ public class DataInputFrame extends JFrame {
         dataTable.setForeground(new Color(220, 220, 220));
         dataTable.setRowHeight(35);
         dataTable.getTableHeader().setBackground(new Color(50, 50, 60));
-        dataTable.getTableHeader().setForeground(Color.WHITE);
+        dataTable.getTableHeader().setForeground(Color.black);
         dataTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
 
         // Add selection listener
@@ -172,7 +172,7 @@ public class DataInputFrame extends JFrame {
     private JTextField createTextField() {
         JTextField field = new JTextField();
         field.setBackground(new Color(50, 50, 60));
-        field.setForeground(Color.WHITE);
+        field.setForeground(Color.black);
         field.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(70, 70, 80)),
                 BorderFactory.createEmptyBorder(8, 10, 8, 10)
@@ -184,7 +184,7 @@ public class DataInputFrame extends JFrame {
     private JButton createStyledButton(String text, Color bgColor) {
         JButton button = new JButton(text);
         button.setBackground(bgColor);
-        button.setForeground(Color.WHITE);
+        button.setForeground(Color.black);
         button.setFont(new Font("Segoe UI", Font.BOLD, 14));
         button.setBorder(BorderFactory.createEmptyBorder(10, 25, 10, 25));
         button.setFocusPainted(false);

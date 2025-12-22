@@ -32,7 +32,7 @@ public class UIUtils {
         button.setContentAreaFilled(false);
         button.setOpaque(true);
         button.setBackground(bgColor);
-        button.setForeground(Color.WHITE);
+        button.setForeground(Color.black);
         button.setFont(new Font(Constants.FONT_PRIMARY, Font.BOLD, Constants.FONT_MEDIUM));
         button.setBorder(BorderFactory.createEmptyBorder(10, 25, 10, 25));
         button.setFocusPainted(false);
@@ -93,7 +93,7 @@ public class UIUtils {
                                                           int index, boolean isSelected, boolean cellHasFocus) {
                 Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 c.setBackground(isSelected ? Constants.BUTTON_PRIMARY : Constants.BACKGROUND_LIGHT);
-                c.setForeground(isSelected ? Color.WHITE : Constants.TEXT_PRIMARY);
+                c.setForeground(isSelected ? Color.black : Constants.TEXT_PRIMARY);
                 return c;
             }
         });

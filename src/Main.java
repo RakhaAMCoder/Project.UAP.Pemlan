@@ -54,7 +54,7 @@ public class Main {
 
         // Buttons
         UIManager.put("Button.background", new Color(70, 130, 180));
-        UIManager.put("Button.foreground", Color.WHITE);
+        UIManager.put("Button.foreground", Color.black);
         UIManager.put("Button.border", BorderFactory.createEmptyBorder(5, 15, 5, 15));
 
         // Combo Box
@@ -67,9 +67,9 @@ public class Main {
         UIManager.put("Table.foreground", textColor);
         UIManager.put("Table.gridColor", borderColor);
         UIManager.put("Table.selectionBackground", new Color(70, 130, 180));
-        UIManager.put("Table.selectionForeground", Color.WHITE);
+        UIManager.put("Table.selectionForeground", Color.black);
         UIManager.put("TableHeader.background", new Color(50, 50, 60));
-        UIManager.put("TableHeader.foreground", Color.WHITE);
+        UIManager.put("TableHeader.foreground", Color.black);
 
         // Scroll Pane
         UIManager.put("ScrollPane.background", darkBackground);
@@ -108,13 +108,13 @@ public class Main {
         UIManager.put("List.background", lightBackground);
         UIManager.put("List.foreground", textColor);
         UIManager.put("List.selectionBackground", new Color(70, 130, 180));
-        UIManager.put("List.selectionForeground", Color.WHITE);
+        UIManager.put("List.selectionForeground", Color.black);
 
         // Tree
         UIManager.put("Tree.background", lightBackground);
         UIManager.put("Tree.foreground", textColor);
         UIManager.put("Tree.selectionBackground", new Color(70, 130, 180));
-        UIManager.put("Tree.selectionForeground", Color.WHITE);
+        UIManager.put("Tree.selectionForeground", Color.black);
 
         // Check Box and Radio Button
         UIManager.put("CheckBox.background", darkBackground);
