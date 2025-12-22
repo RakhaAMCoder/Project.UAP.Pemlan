@@ -1,11 +1,11 @@
 ID,Name,Symbol,Category,Price,Change24h,ChangePercent24h,IsFavorite
-BNB-003,Binance Coin,BNB,Exchange,193,40,90,40,87,77,false
-ETH-002,Ethereum,ETH,Platform,2544,71,-231,29,-8,33,false
-DOT-006,Polkadot,DOT,Platform,8,14,-0,86,-9,58,false
-SOL-005,Solana,SOL,Platform,109,99,-5,01,-4,36,false
-LINK-010,Chainlink,LINK,Oracle,15,69,-1,31,-7,68,false
-BTC-001,Bitcoin,BTC,Currency,36812,78,-1728,22,-4,48,false
-XRP-008,Ripple,XRP,Payment,0,67,0,67,Infinity,false
+BNB-003,Binance Coin,BNB,Exchange,164,71,-28,29,-14,66,false
+ETH-002,Ethereum,ETH,Platform,2726,41,182,41,7,17,false
+DOT-006,Polkadot,DOT,Platform,9,99,1,99,24,86,false
+SOL-005,Solana,SOL,Platform,114,38,5,38,4,94,false
+LINK-010,Chainlink,LINK,Oracle,16,11,1,11,7,40,false
+BTC-001,Bitcoin,BTC,Currency,35551,07,-1260,93,-3,43,false
+XRP-008,Ripple,XRP,Payment,0,70,0,70,Infinity,false
 ADA-004,Cardano,ADA,Platform,0,54,0,54,Infinity,false
-LTC-009,Litecoin,LTC,Currency,190,54,7,54,4,12,false
+LTC-009,Litecoin,LTC,Currency,114,95,-75,05,-39,50,false
 DOGE-007,Dogecoin,DOGE,Meme,0,19,0,19,Infinity,false
