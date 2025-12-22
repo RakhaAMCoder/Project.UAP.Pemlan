@@ -6,8 +6,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class CryptoTable extends JTable {
-    private Color positiveColor = new Color(0, 200, 0);
-    private Color negativeColor = new Color(220, 0, 0);
+    private Color positiveColor = new Color(0, 200, 0);    // HIJAU
+    private Color negativeColor = new Color(220, 0, 0);    // MERAH
 
     public CryptoTable(TableModel model) {
         super(model);
@@ -19,11 +19,11 @@ public class CryptoTable extends JTable {
         setFillsViewportHeight(true);
         getTableHeader().setReorderingAllowed(false);
 
-        // Set custom cell renderer for price change column
+        // Set custom cell renderer untuk SEMUA kolom
         setDefaultRenderer(Object.class, new CryptoCellRenderer());
     }
 
-    // Custom cell renderer for cryptocurrency table
+    // Custom cell renderer - SAMA dengan DataInputFrame
     class CryptoCellRenderer extends DefaultTableCellRenderer {
         @Override
         public Component getTableCellRendererComponent(JTable table, Object value,
@@ -43,24 +43,26 @@ public class CryptoTable extends JTable {
             // Style specific columns
             String columnName = table.getColumnName(column);
 
+            // KOLOM 24h Change - SAMA PERSIS dengan DataInputFrame
             if ("24h Change".equals(columnName) && value != null) {
                 String change = value.toString();
                 if (change.contains("+")) {
-                    c.setForeground(positiveColor);
+                    c.setForeground(positiveColor); // HIJAU untuk positif
                     setText("<html><b>" + change + "</b></html>");
                 } else if (change.contains("-")) {
-                    c.setForeground(negativeColor);
+                    c.setForeground(negativeColor); // MERAH untuk negatif
                     setText("<html><b>" + change + "</b></html>");
                 }
             }
 
+            // KOLOM Status - SAMA PERSIS dengan DataInputFrame
             if ("Status".equals(columnName) && value != null) {
                 String status = value.toString();
                 if ("Naik".equals(status)) {
-                    c.setForeground(positiveColor);
+                    c.setForeground(positiveColor); // HIJAU
                     setText("<html><b>▲ " + status + "</b></html>");
                 } else {
-                    c.setForeground(negativeColor);
+                    c.setForeground(negativeColor); // MERAH
                     setText("<html><b>▼ " + status + "</b></html>");
                 }
             }

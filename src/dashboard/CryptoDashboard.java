@@ -10,6 +10,8 @@ import java.awt.event.*;
 import java.util.*;
 import java.util.List;
 import java.util.Timer;
+
+import components.CryptoTable;
 import models.Cryptocurrency;
 import services.FileHandler;
 import services.APIService;
@@ -139,7 +141,7 @@ public class CryptoDashboard extends JFrame {
             }
         };
 
-        cryptoTable = new JTable(tableModel);
+        cryptoTable = new CryptoTable(tableModel);
         cryptoTable.setBackground(new Color(40, 40, 50));
         cryptoTable.setForeground(new Color(220, 220, 220));
         cryptoTable.setRowHeight(40);
@@ -219,7 +221,7 @@ public class CryptoDashboard extends JFrame {
                     crypto.getFormattedPrice(),
                     crypto.getFormattedChange(),
                     crypto.getStatus(),
-                    crypto.getLastUpdated().toString(),
+                    crypto.getLastUpdated().toString().substring(0, 19).replace("T", " "),
                     "View Chart"
             };
             tableModel.addRow(row);

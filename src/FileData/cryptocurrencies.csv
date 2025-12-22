@@ -1,22 +1,22 @@
 ID,Name,Symbol,Category,Price,Change24h,ChangePercent24h,IsFavorite
-BTC-001,Bitcoin,BTC,Currency,36055.89,-6466.70,-15.21,true
-ETH-002,Ethereum,ETH,Platform,2575.20,-89.02,-3.34,true
-BNB-003,Binance Coin,BNB,Exchange,102.19,-12.35,-10.78,false
-ADA-004,Cardano,ADA,Platform,0.51,0.01,1.77,false
-SOL-005,Solana,SOL,Platform,120.27,9.11,8.20,true
-XRP-006,Ripple,XRP,Payment,0.68,0.01,1.29,false
-DOT-007,Polkadot,DOT,Platform,9.27,0.17,1.92,false
-DOGE-008,Dogecoin,DOGE,Meme,0.17,0.01,8.16,false
-AVAX-009,Avalanche,AVAX,Platform,43.78,2.07,4.96,false
-LINK-010,Chainlink,LINK,Oracle,16.27,1.98,13.86,false
-MATIC-011,Polygon,MATIC,Platform,108.68,-37.25,-25.52,false
-LTC-012,Litecoin,LTC,Currency,102.49,-84.41,-45.16,false
-UNI-013,Uniswap,UNI,DeFi,121.10,12.47,11.48,false
-ATOM-014,Cosmos,ATOM,Platform,108.46,-48.32,-30.82,false
-ALGO-015,Algorand,ALGO,Platform,188.60,49.13,35.23,false
-VET-016,VeChain,VET,Platform,135.73,-48.99,-26.52,false
-XTZ-017,Tezos,XTZ,Platform,177.61,13.22,8.04,false
-FIL-018,Filecoin,FIL,Storage,143.48,24.05,20.13,false
-ETC-019,Ethereum Classic,ETC,Currency,145.49,41.13,39.42,false
-XLM-020,Stellar,XLM,Payment,169.05,27.42,19.36,false
-CTE-1766413346048,CatEye,CTE,Meme,180.85,0.74,0.41,false
+BTC-001,Bitcoin,BTC,Currency,35601.78,-6651.65,-15.74,true
+ETH-002,Ethereum,ETH,Platform,2827.73,281.47,11.05,true
+BNB-003,Binance Coin,BNB,Exchange,120.77,-17.87,-12.89,false
+ADA-004,Cardano,ADA,Platform,0.55,0.05,10.77,false
+SOL-005,Solana,SOL,Platform,116.39,1.98,1.73,true
+XRP-006,Ripple,XRP,Payment,0.64,0.01,1.95,false
+DOT-007,Polkadot,DOT,Platform,8.65,-1.38,-13.78,false
+DOGE-008,Dogecoin,DOGE,Meme,0.20,0.00,1.40,false
+AVAX-009,Avalanche,AVAX,Platform,37.86,-1.93,-4.85,false
+LINK-010,Chainlink,LINK,Oracle,14.64,-1.01,-6.47,false
+MATIC-011,Polygon,MATIC,Platform,173.43,39.16,29.16,false
+LTC-012,Litecoin,LTC,Currency,157.86,53.78,51.67,false
+UNI-013,Uniswap,UNI,DeFi,118.39,15.21,14.74,false
+ATOM-014,Cosmos,ATOM,Platform,145.13,-24.22,-14.30,false
+ALGO-015,Algorand,ALGO,Platform,123.29,9.42,8.27,false
+VET-016,VeChain,VET,Platform,132.31,-54.06,-29.01,false
+XTZ-017,Tezos,XTZ,Platform,182.64,4.26,2.39,false
+FIL-018,Filecoin,FIL,Storage,119.06,-71.12,-37.40,false
+ETC-019,Ethereum Classic,ETC,Currency,190.25,-8.84,-4.44,false
+XLM-020,Stellar,XLM,Payment,144.49,-42.57,-22.76,false
+CTE-1766413346048,CatEye,CTE,Meme,163.77,63.00,62.53,false
