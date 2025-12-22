@@ -25,6 +25,15 @@ public class Cryptocurrency {
         this.isFavorite = false;
     }
 
+    // Constructor tanpa ID (untuk generate otomatis)
+    public Cryptocurrency(String name, String symbol, String category) {
+        this(generateId(symbol), name, symbol, category);
+    }
+
+    private static String generateId(String symbol) {
+        return symbol + "-" + System.currentTimeMillis();
+    }
+
     // Getters and Setters
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }

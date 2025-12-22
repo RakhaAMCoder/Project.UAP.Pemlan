@@ -260,6 +260,22 @@ public class CryptoDashboard extends JFrame {
         }
     }
 
+    public void refreshDashboardData() {
+        System.out.println("Refreshing dashboard data from file...");
+
+        // Reload data dari file
+        cryptoList = fileHandler.loadCryptocurrencies();
+
+        // Refresh tabel
+        refreshTableData();
+
+        // Update UI
+        revalidate();
+        repaint();
+
+        System.out.println("Dashboard refreshed. Total cryptos: " + cryptoList.size());
+    }
+
     private void refreshData() {
         // Simulate API call using our simplified APIService
         new Thread(() -> {
