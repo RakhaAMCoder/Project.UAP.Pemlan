@@ -93,7 +93,7 @@ public class CryptoDashboard extends JFrame {
         // Search field
         searchField = new JTextField(20);
         searchField.setBackground(new Color(50, 50, 60));
-        searchField.setForeground(Color.black);
+        searchField.setForeground(Color.white);
         searchField.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(70, 70, 80)),
                 BorderFactory.createEmptyBorder(5, 10, 5, 10)

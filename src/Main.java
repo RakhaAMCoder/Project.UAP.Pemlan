@@ -8,7 +8,7 @@ public class Main {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 
-            // Custom Dark Theme for all components.
+            // Custom Dark Theme for all components
             setupDarkTheme();
 
         } catch (Exception e) {

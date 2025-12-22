@@ -1,21 +1,22 @@
 ID,Name,Symbol,Category,Price,Change24h,ChangePercent24h,IsFavorite
-BTC-001,Bitcoin,BTC,Currency,46890.50,523.75,1.13,true
-ETH-002,Ethereum,ETH,Platform,2485.75,45.60,1.87,true
-BNB-003,Binance Coin,BNB,Exchange,312.40,8.25,2.71,false
-ADA-004,Cardano,ADA,Platform,0.52,-0.01,-1.89,false
-SOL-005,Solana,SOL,Platform,98.60,3.45,3.63,true
-XRP-006,Ripple,XRP,Payment,0.62,0.01,1.64,false
-DOT-007,Polkadot,DOT,Platform,7.85,-0.12,-1.51,false
-DOGE-008,Dogecoin,DOGE,Meme,0.15,0.00,0.00,false
-AVAX-009,Avalanche,AVAX,Platform,36.40,1.25,3.56,false
-LINK-010,Chainlink,LINK,Oracle,14.25,0.35,2.52,false
-MATIC-011,Polygon,MATIC,Platform,0.85,0.02,2.41,false
-LTC-012,Litecoin,LTC,Currency,71.30,1.15,1.64,false
-UNI-013,Uniswap,UNI,DeFi,6.45,0.18,2.87,false
-ATOM-014,Cosmos,ATOM,Platform,9.80,-0.15,-1.51,false
-ALGO-015,Algorand,ALGO,Platform,0.18,0.00,0.00,false
-VET-016,VeChain,VET,Platform,0.03,0.00,0.00,false
-XTZ-017,Tezos,XTZ,Platform,1.05,0.01,0.96,false
-FIL-018,Filecoin,FIL,Storage,5.60,0.12,2.19,false
-ETC-019,Ethereum Classic,ETC,Currency,26.75,0.45,1.71,false
-XLM-020,Stellar,XLM,Payment,0.12,0.00,0.00,false
+BTC-001,Bitcoin,BTC,Currency,36055.89,-6466.70,-15.21,true
+ETH-002,Ethereum,ETH,Platform,2575.20,-89.02,-3.34,true
+BNB-003,Binance Coin,BNB,Exchange,102.19,-12.35,-10.78,false
+ADA-004,Cardano,ADA,Platform,0.51,0.01,1.77,false
+SOL-005,Solana,SOL,Platform,120.27,9.11,8.20,true
+XRP-006,Ripple,XRP,Payment,0.68,0.01,1.29,false
+DOT-007,Polkadot,DOT,Platform,9.27,0.17,1.92,false
+DOGE-008,Dogecoin,DOGE,Meme,0.17,0.01,8.16,false
+AVAX-009,Avalanche,AVAX,Platform,43.78,2.07,4.96,false
+LINK-010,Chainlink,LINK,Oracle,16.27,1.98,13.86,false
+MATIC-011,Polygon,MATIC,Platform,108.68,-37.25,-25.52,false
+LTC-012,Litecoin,LTC,Currency,102.49,-84.41,-45.16,false
+UNI-013,Uniswap,UNI,DeFi,121.10,12.47,11.48,false
+ATOM-014,Cosmos,ATOM,Platform,108.46,-48.32,-30.82,false
+ALGO-015,Algorand,ALGO,Platform,188.60,49.13,35.23,false
+VET-016,VeChain,VET,Platform,135.73,-48.99,-26.52,false
+XTZ-017,Tezos,XTZ,Platform,177.61,13.22,8.04,false
+FIL-018,Filecoin,FIL,Storage,143.48,24.05,20.13,false
+ETC-019,Ethereum Classic,ETC,Currency,145.49,41.13,39.42,false
+XLM-020,Stellar,XLM,Payment,169.05,27.42,19.36,false
+CTE-1766413346048,CatEye,CTE,Meme,180.85,0.74,0.41,false

@@ -82,7 +82,7 @@ public class DataInputFrame extends JFrame {
                 BorderFactory.createTitledBorder(
                         BorderFactory.createLineBorder(new Color(70, 130, 180)),
                         "ADD / EDIT CRYPTOCURRENCY",
-                        TitledBorder.LEFT,
+                        TitledBorder.CENTER,
                         TitledBorder.TOP,
                         new Font("Segoe UI", Font.BOLD, 14),
                         new Color(220, 220, 220)
@@ -100,7 +100,7 @@ public class DataInputFrame extends JFrame {
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 1;
-        JLabel nameLabel = new JLabel("Name*:");
+        JLabel nameLabel = new JLabel("Name:");
         nameLabel.setForeground(new Color(220, 220, 220));
         nameLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
         panel.add(nameLabel, gbc);
@@ -113,7 +113,7 @@ public class DataInputFrame extends JFrame {
         // Symbol Field
         gbc.gridx = 0;
         gbc.gridy = 1;
-        JLabel symbolLabel = new JLabel("Symbol*:");
+        JLabel symbolLabel = new JLabel("Symbol:");
         symbolLabel.setForeground(new Color(220, 220, 220));
         symbolLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
         panel.add(symbolLabel, gbc);
@@ -126,7 +126,7 @@ public class DataInputFrame extends JFrame {
         // Category Field
         gbc.gridx = 0;
         gbc.gridy = 2;
-        JLabel categoryLabel = new JLabel("Category*:");
+        JLabel categoryLabel = new JLabel("Category:");
         categoryLabel.setForeground(new Color(220, 220, 220));
         categoryLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
         panel.add(categoryLabel, gbc);
@@ -192,7 +192,7 @@ public class DataInputFrame extends JFrame {
         dataTable.setForeground(new Color(220, 220, 220));
         dataTable.setRowHeight(35);
         dataTable.getTableHeader().setBackground(new Color(50, 50, 60));
-        dataTable.getTableHeader().setForeground(Color.WHITE);
+        dataTable.getTableHeader().setForeground(Color.BLACK);
         dataTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
 
         // Set column widths
@@ -269,11 +269,11 @@ public class DataInputFrame extends JFrame {
         panel.setBackground(new Color(30, 30, 40));
         panel.setBorder(new EmptyBorder(20, 0, 0, 0));
 
-        // Create buttons with colors and black text
-        addBtn = createStyledButton("➕ Add New", new Color(50, 205, 50), Color.BLACK);
-        updateBtn = createStyledButton("✏️ Update", new Color(255, 140, 0), Color.BLACK);
-        deleteBtn = createStyledButton("🗑️ Delete", new Color(220, 20, 60), Color.BLACK);
-        clearBtn = createStyledButton("🗑️ Clear Form", new Color(100, 100, 120), Color.BLACK);
+        // HAPUS EMOJI dari semua button
+        addBtn = createStyledButton("Add New", new Color(50, 205, 50), Color.BLACK);
+        updateBtn = createStyledButton("Update", new Color(255, 140, 0), Color.BLACK);
+        deleteBtn = createStyledButton("Delete", new Color(220, 20, 60), Color.BLACK);
+        clearBtn = createStyledButton("Clear Form", new Color(100, 100, 120), Color.BLACK);
 
         // Initially disable update and delete buttons
         updateBtn.setEnabled(false);
@@ -314,22 +314,15 @@ public class DataInputFrame extends JFrame {
 
     private JTextField createTextField() {
         JTextField field = new JTextField();
+        field.setPreferredSize(new Dimension(200, 40));
         field.setBackground(new Color(50, 50, 60));
         field.setForeground(Color.WHITE);
         field.setCaretColor(Color.WHITE);
         field.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(70, 70, 80)),
-                BorderFactory.createEmptyBorder(8, 10, 8, 10)
+                BorderFactory.createEmptyBorder(8, 12, 8, 10)
         ));
         field.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-
-        // Clear selection when form is cleared
-        field.addFocusListener(new FocusAdapter() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                field.selectAll();
-            }
-        });
 
         return field;
     }
@@ -449,7 +442,7 @@ public class DataInputFrame extends JFrame {
         // Validation
         if (name.isEmpty() || symbol.isEmpty() || category.isEmpty()) {
             JOptionPane.showMessageDialog(this,
-                    "❌ Please fill in ALL required fields!\n\n" +
+                    " Please fill in ALL required fields!\n\n" +
                             "• Name: " + (name.isEmpty() ? "EMPTY" : "OK") + "\n" +
                             "• Symbol: " + (symbol.isEmpty() ? "EMPTY" : "OK") + "\n" +
                             "• Category: " + (category.isEmpty() ? "EMPTY" : "OK"),
@@ -462,7 +455,7 @@ public class DataInputFrame extends JFrame {
         // Validate symbol length
         if (symbol.length() < 2 || symbol.length() > 5) {
             JOptionPane.showMessageDialog(this,
-                    "❌ Symbol must be 2-5 characters!\n\n" +
+                    " Symbol must be 2-5 characters!\n\n" +
                             "Current: '" + symbol + "' (" + symbol.length() + " characters)",
                     "Invalid Symbol",
                     JOptionPane.WARNING_MESSAGE);
@@ -475,7 +468,7 @@ public class DataInputFrame extends JFrame {
         for (Cryptocurrency crypto : cryptoList) {
             if (crypto.getSymbol().equalsIgnoreCase(symbol)) {
                 JOptionPane.showMessageDialog(this,
-                        "❌ Cryptocurrency with symbol '" + symbol + "' already exists!\n\n" +
+                        " Cryptocurrency with symbol '" + symbol + "' already exists!\n\n" +
                                 "Existing: " + crypto.getName() + " (" + crypto.getSymbol() + ")\n" +
                                 "Please use a different symbol.",
                         "Duplicate Symbol",
@@ -524,7 +517,7 @@ public class DataInputFrame extends JFrame {
 
             // Show success message
             JOptionPane.showMessageDialog(this,
-                    "✅ CRYPTOCURRENCY ADDED SUCCESSFULLY!\n\n" +
+                    " CRYPTOCURRENCY ADDED SUCCESSFULLY!\n\n" +
                             "Name: " + name + "\n" +
                             "Symbol: " + symbol + "\n" +
                             "Category: " + category + "\n" +
@@ -543,7 +536,7 @@ public class DataInputFrame extends JFrame {
             cryptoList.remove(newCrypto);
 
             JOptionPane.showMessageDialog(this,
-                    "❌ FAILED TO SAVE CRYPTOCURRENCY!\n\n" +
+                    " FAILED TO SAVE CRYPTOCURRENCY!\n\n" +
                             "Could not write to data file.\n" +
                             "Check console for error details.",
                     "Save Error",
@@ -556,7 +549,7 @@ public class DataInputFrame extends JFrame {
     private void updateCrypto() {
         if (editingIndex < 0 || editingIndex >= cryptoList.size()) {
             JOptionPane.showMessageDialog(this,
-                    "⚠️ Please SELECT a cryptocurrency to update.\n" +
+                    "Please SELECT a cryptocurrency to update.\n" +
                             "Click on a row in the table first.",
                     "No Selection",
                     JOptionPane.WARNING_MESSAGE);
@@ -577,7 +570,7 @@ public class DataInputFrame extends JFrame {
             // Validation
             if (name.isEmpty() || symbol.isEmpty() || category.isEmpty()) {
                 JOptionPane.showMessageDialog(this,
-                        "❌ Please fill in ALL required fields!",
+                        "Please fill in ALL required fields!",
                         "Validation Error",
                         JOptionPane.WARNING_MESSAGE);
                 return;
@@ -591,7 +584,7 @@ public class DataInputFrame extends JFrame {
                 for (Cryptocurrency c : cryptoList) {
                     if (c != crypto && c.getSymbol().equalsIgnoreCase(symbol)) {
                         JOptionPane.showMessageDialog(this,
-                                "❌ Cryptocurrency with symbol '" + symbol + "' already exists!\n\n" +
+                                "Cryptocurrency with symbol '" + symbol + "' already exists!\n\n" +
                                         "Existing: " + c.getName() + " (" + c.getSymbol() + ")\n" +
                                         "Please use a different symbol.",
                                 "Duplicate Symbol",
@@ -632,7 +625,7 @@ public class DataInputFrame extends JFrame {
 
                 // Show success message
                 JOptionPane.showMessageDialog(this,
-                        "✅ CRYPTOCURRENCY UPDATED SUCCESSFULLY!\n\n" +
+                        "CRYPTOCURRENCY UPDATED SUCCESSFULLY!\n\n" +
                                 "Old: " + oldName + " (" + oldSymbol + ")\n" +
                                 "New: " + name + " (" + symbol + ")\n" +
                                 "Category: " + category + "\n" +
@@ -650,7 +643,7 @@ public class DataInputFrame extends JFrame {
                 crypto.setSymbol(oldSymbol);
 
                 JOptionPane.showMessageDialog(this,
-                        "❌ FAILED TO SAVE CHANGES!\n\n" +
+                        "FAILED TO SAVE CHANGES!\n\n" +
                                 "Could not write to data file.\n" +
                                 "Original data restored.",
                         "Save Error",
@@ -664,7 +657,7 @@ public class DataInputFrame extends JFrame {
             e.printStackTrace();
 
             JOptionPane.showMessageDialog(this,
-                    "❌ ERROR UPDATING CRYPTOCURRENCY!\n\n" +
+                    "ERROR UPDATING CRYPTOCURRENCY!\n\n" +
                             "Error: " + e.getMessage(),
                     "Update Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -676,7 +669,7 @@ public class DataInputFrame extends JFrame {
     private void deleteCrypto() {
         if (editingIndex < 0 || editingIndex >= cryptoList.size()) {
             JOptionPane.showMessageDialog(this,
-                    "⚠️ Please SELECT a cryptocurrency to delete.\n" +
+                    "Please SELECT a cryptocurrency to delete.\n" +
                             "Click on a row in the table first.",
                     "No Selection",
                     JOptionPane.WARNING_MESSAGE);
@@ -691,13 +684,13 @@ public class DataInputFrame extends JFrame {
         System.out.println("Current list size: " + cryptoList.size());
 
         int confirm = JOptionPane.showConfirmDialog(this,
-                "🗑️ CONFIRM DELETE\n\n" +
+                "CONFIRM DELETE\n\n" +
                         "Are you sure you want to PERMANENTLY DELETE:\n\n" +
                         "● Name: " + cryptoToDelete.getName() + "\n" +
                         "● Symbol: " + cryptoToDelete.getSymbol() + "\n" +
                         "● Category: " + cryptoToDelete.getCategory() + "\n" +
                         "● Price: " + cryptoToDelete.getFormattedPrice() + "\n\n" +
-                        "⚠️ This action CANNOT be undone!",
+                        "This action CANNOT be undone!",
                 "Confirm Delete",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.WARNING_MESSAGE);
@@ -725,7 +718,7 @@ public class DataInputFrame extends JFrame {
                     }
 
                     JOptionPane.showMessageDialog(this,
-                            "✅ CRYPTOCURRENCY DELETED SUCCESSFULLY!\n\n" +
+                            "CRYPTOCURRENCY DELETED SUCCESSFULLY!\n\n" +
                                     "Deleted: " + cryptoToDelete.getName() + " (" + cryptoToDelete.getSymbol() + ")\n" +
                                     "Remaining: " + cryptoList.size() + " cryptocurrencies",
                             "Delete Success",
@@ -740,7 +733,7 @@ public class DataInputFrame extends JFrame {
                     cryptoList.add(editingIndex, cryptoToDelete);
 
                     JOptionPane.showMessageDialog(this,
-                            "❌ FAILED TO DELETE FROM FILE!\n\n" +
+                            "FAILED TO DELETE FROM FILE!\n\n" +
                                     "Could not write to data file.\n" +
                                     "Cryptocurrency restored to list.",
                             "Delete Error",
@@ -754,7 +747,7 @@ public class DataInputFrame extends JFrame {
                 e.printStackTrace();
 
                 JOptionPane.showMessageDialog(this,
-                        "❌ ERROR DELETING CRYPTOCURRENCY!\n\n" +
+                        "ERROR DELETING CRYPTOCURRENCY!\n\n" +
                                 "Error: " + e.getMessage(),
                         "Delete Error",
                         JOptionPane.ERROR_MESSAGE);

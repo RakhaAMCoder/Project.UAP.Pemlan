@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class FileHandler {
-    // Gunakan absolute path untuk menghindari masalah
-    private static String DATA_DIR = System.getProperty("user.dir") + File.separator + "data";
+    // Ubah path ke dalam src/FileData
+    private static String DATA_DIR = System.getProperty("user.dir") + File.separator + "src" + File.separator + "FileData";
     private static String CRYPTO_FILE = DATA_DIR + File.separator + "cryptocurrencies.csv";
     private static final String HISTORY_FILE = DATA_DIR + File.separator + "price_history.csv";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -32,16 +32,12 @@ public class FileHandler {
             System.out.println("Creating data directory...");
             boolean created = dataDir.mkdirs();
             if (created) {
-                System.out.println("✓ Data directory created: " + dataDir.getAbsolutePath());
+                System.out.println("Data directory created: " + dataDir.getAbsolutePath());
             } else {
-                System.err.println("✗ Failed to create data directory!");
-                // Coba create di current directory
-                System.out.println("Trying to create in current directory...");
-                DATA_DIR = "data";
-                CRYPTO_FILE = DATA_DIR + File.separator + "cryptocurrencies.csv";
+                System.err.println("Failed to create data directory!");
             }
         } else {
-            System.out.println("✓ Data directory exists: " + dataDir.getAbsolutePath());
+            System.out.println("Data directory exists: " + dataDir.getAbsolutePath());
         }
     }
 
@@ -52,14 +48,14 @@ public class FileHandler {
             List<Cryptocurrency> sampleData = createSampleCryptocurrencies();
             boolean saved = saveCryptocurrencies(sampleData);
             if (saved) {
-                System.out.println("✓ Sample data created: " + cryptoFile.getAbsolutePath());
-                System.out.println("✓ File size: " + cryptoFile.length() + " bytes");
+                System.out.println("Sample data created: " + cryptoFile.getAbsolutePath());
+                System.out.println("File size: " + cryptoFile.length() + " bytes");
             } else {
-                System.err.println("✗ Failed to create sample data!");
+                System.err.println("Failed to create sample data!");
             }
         } else {
-            System.out.println("✓ Data file exists: " + cryptoFile.getAbsolutePath());
-            System.out.println("✓ File size: " + cryptoFile.length() + " bytes");
+            System.out.println("Data file exists: " + cryptoFile.getAbsolutePath());
+            System.out.println("File size: " + cryptoFile.length() + " bytes");
         }
     }
 
@@ -150,7 +146,7 @@ public class FileHandler {
 
                 try {
                     // Parse CSV line
-                    String[] data = line.split(",", -1); // -1 to keep trailing empty strings
+                    String[] data = line.split(",", -1);
 
                     if (data.length >= 8) {
                         String id = data[0].trim();
@@ -158,10 +154,8 @@ public class FileHandler {
                         String symbol = data[2].trim();
                         String category = data[3].trim();
 
-                        // Create cryptocurrency
                         Cryptocurrency crypto = new Cryptocurrency(id, name, symbol, category);
 
-                        // Parse numeric values with error handling
                         try {
                             crypto.setCurrentPrice(Double.parseDouble(data[4].trim()));
                         } catch (NumberFormatException e) {
@@ -204,22 +198,21 @@ public class FileHandler {
                 }
             }
 
-            System.out.println("✓ Successfully loaded: " + successCount + " cryptocurrencies");
+            System.out.println("Successfully loaded: " + successCount + " cryptocurrencies");
             if (errorCount > 0) {
-                System.err.println("✗ Errors: " + errorCount + " lines failed to load");
+                System.err.println("Errors: " + errorCount + " lines failed to load");
             }
 
         } catch (FileNotFoundException e) {
-            System.err.println("✗ File not found: " + cryptoFile.getAbsolutePath());
+            System.err.println("File not found: " + cryptoFile.getAbsolutePath());
             System.out.println("Creating sample data instead...");
             return createSampleCryptocurrencies();
         } catch (IOException e) {
-            System.err.println("✗ Error reading file: " + e.getMessage());
+            System.err.println("Error reading file: " + e.getMessage());
             System.out.println("Creating sample data instead...");
             return createSampleCryptocurrencies();
         }
 
-        // If no data was loaded, create sample data
         if (cryptoList.isEmpty()) {
             System.out.println("No data loaded, creating sample data...");
             return createSampleCryptocurrencies();
@@ -235,37 +228,32 @@ public class FileHandler {
 
         File cryptoFile = new File(CRYPTO_FILE);
 
-        // Backup existing file if it exists
         if (cryptoFile.exists()) {
             try {
                 File backup = new File(CRYPTO_FILE + ".backup");
                 copyFile(cryptoFile, backup);
-                System.out.println("✓ Created backup: " + backup.getName());
+                System.out.println("Created backup: " + backup.getName());
             } catch (IOException e) {
                 System.err.println("Warning: Could not create backup: " + e.getMessage());
             }
         }
 
-        // Ensure directory exists
         File parentDir = cryptoFile.getParentFile();
         if (parentDir != null && !parentDir.exists()) {
             System.out.println("Creating directory: " + parentDir.getAbsolutePath());
             boolean dirCreated = parentDir.mkdirs();
             if (!dirCreated) {
-                System.err.println("✗ Failed to create directory!");
+                System.err.println("Failed to create directory!");
                 return false;
             }
         }
 
-        // Write to temporary file first
         File tempFile = new File(CRYPTO_FILE + ".tmp");
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
-            // Write header
             writer.write("ID,Name,Symbol,Category,Price,Change24h,ChangePercent24h,IsFavorite");
             writer.newLine();
 
-            // Write data
             for (Cryptocurrency crypto : cryptoList) {
                 String line = String.format("%s,%s,%s,%s,%.2f,%.2f,%.2f,%b",
                         escapeCSV(crypto.getId()),
@@ -282,36 +270,32 @@ public class FileHandler {
             }
 
             writer.flush();
-            System.out.println("✓ Data written to temporary file");
+            System.out.println("Data written to temporary file");
 
         } catch (IOException e) {
-            System.err.println("✗ Error writing to temporary file: " + e.getMessage());
+            System.err.println("Error writing to temporary file: " + e.getMessage());
             return false;
         }
 
-        // Replace original file with temporary file
         try {
-            // Delete original file if it exists
             if (cryptoFile.exists()) {
                 if (!cryptoFile.delete()) {
-                    System.err.println("✗ Could not delete original file");
-                    // Try to continue anyway
+                    System.err.println("Could not delete original file");
                 }
             }
 
-            // Rename temporary file to original
             if (tempFile.renameTo(cryptoFile)) {
-                System.out.println("✓ Successfully saved to: " + cryptoFile.getAbsolutePath());
-                System.out.println("✓ File size: " + cryptoFile.length() + " bytes");
-                System.out.println("✓ Save completed successfully!");
+                System.out.println("Successfully saved to: " + cryptoFile.getAbsolutePath());
+                System.out.println("File size: " + cryptoFile.length() + " bytes");
+                System.out.println("Save completed successfully!");
                 return true;
             } else {
-                System.err.println("✗ Could not rename temporary file");
+                System.err.println("Could not rename temporary file");
                 return false;
             }
 
         } catch (SecurityException e) {
-            System.err.println("✗ Security exception: " + e.getMessage());
+            System.err.println("Security exception: " + e.getMessage());
             return false;
         }
     }
@@ -329,7 +313,6 @@ public class FileHandler {
 
     private String escapeCSV(String value) {
         if (value == null) return "";
-        // If value contains comma, quote, or newline, escape it
         if (value.contains(",") || value.contains("\"") || value.contains("\n")) {
             return "\"" + value.replace("\"", "\"\"") + "\"";
         }
@@ -339,14 +322,12 @@ public class FileHandler {
     public void savePriceHistory(String cryptoId, double price, LocalDateTime timestamp) {
         File historyFile = new File(HISTORY_FILE);
 
-        // Ensure directory exists
         File parentDir = historyFile.getParentFile();
         if (parentDir != null && !parentDir.exists()) {
             parentDir.mkdirs();
         }
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(historyFile, true))) {
-            // Write header if file is empty
             if (historyFile.length() == 0) {
                 writer.write("CryptoID,Price,Timestamp");
                 writer.newLine();
@@ -379,7 +360,7 @@ public class FileHandler {
 
             while ((line = reader.readLine()) != null) {
                 lineNumber++;
-                if (lineNumber == 1) continue; // Skip header
+                if (lineNumber == 1) continue;
 
                 String[] data = line.split(",", -1);
                 if (data.length >= 3 && data[0].equals(cryptoId)) {
@@ -393,7 +374,6 @@ public class FileHandler {
         return history;
     }
 
-    // Helper method untuk debug
     public void printFileInfo() {
         File cryptoFile = new File(CRYPTO_FILE);
         System.out.println("\n=== FILE INFO ===");
