@@ -172,7 +172,7 @@ public class DataInputFrame extends JFrame {
     private JTextField createTextField() {
         JTextField field = new JTextField();
         field.setBackground(new Color(50, 50, 60));
-        field.setForeground(Color.black);
+        field.setForeground(Color.WHITE);
         field.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(70, 70, 80)),
                 BorderFactory.createEmptyBorder(8, 10, 8, 10)

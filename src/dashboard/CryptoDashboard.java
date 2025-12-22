@@ -280,10 +280,6 @@ public class CryptoDashboard extends JFrame {
 
                 SwingUtilities.invokeLater(() -> {
                     refreshTableData();
-                    // Show notification only first few times
-                    if (Math.random() > 0.7) { // 30% chance to show notification
-                        showNotification("Prices updated successfully!");
-                    }
                 });
 
             } catch (Exception e) {
@@ -294,12 +290,6 @@ public class CryptoDashboard extends JFrame {
                 });
             }
         }).start();
-    }
-
-    private void showNotification(String message) {
-        // Create a subtle notification
-        JOptionPane.showMessageDialog(this, message,
-                "Update", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void startRealTimeUpdates() {
