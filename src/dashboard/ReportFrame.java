@@ -5,7 +5,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -19,11 +18,11 @@ import services.FileHandler;
 public class ReportFrame extends JFrame {
     private JTable historyTable;
     private DefaultTableModel tableModel;
-    private JComboBox<String> cryptoFilterCombo;
-    private JComboBox<String> dateFilterCombo;
     private JTextArea summaryArea;
     private FileHandler fileHandler;
     private List<Cryptocurrency> cryptoList;
+    private JButton refreshBtn;
+    private ChartPanel pieChartPanel;
 
     public ReportFrame() {
         this.fileHandler = new FileHandler();
@@ -76,38 +75,14 @@ public class ReportFrame extends JFrame {
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
         titleLabel.setForeground(new Color(220, 220, 220));
 
-        // Filter controls
-        JPanel filterPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
-        filterPanel.setBackground(new Color(40, 40, 50));
-
-        cryptoFilterCombo = new JComboBox<>();
-        cryptoFilterCombo.addItem("All Cryptocurrencies");
-        for (Cryptocurrency crypto : cryptoList) {
-            cryptoFilterCombo.addItem(crypto.getName() + " (" + crypto.getSymbol() + ")");
-        }
-        cryptoFilterCombo.setBackground(new Color(50, 50, 60));
-        cryptoFilterCombo.setForeground(Color.black);
-        cryptoFilterCombo.addActionListener(e -> filterHistory());
-
-        dateFilterCombo = new JComboBox<>(new String[]{
-                "Today", "Last 7 Days", "Last 30 Days", "All Time"
-        });
-        dateFilterCombo.setBackground(new Color(50, 50, 60));
-        dateFilterCombo.setForeground(Color.black);
-        dateFilterCombo.addActionListener(e -> filterHistory());
-
-        JButton exportBtn = new JButton("Export Report");
-        exportBtn.setBackground(new Color(70, 130, 180));
-        exportBtn.setForeground(Color.black);
-        exportBtn.addActionListener(e -> exportReport());
-
-        filterPanel.add(new JLabel("Filter by:"));
-        filterPanel.add(cryptoFilterCombo);
-        filterPanel.add(dateFilterCombo);
-        filterPanel.add(exportBtn);
+        // Refresh button only
+        refreshBtn = new JButton("Refresh");
+        refreshBtn.setBackground(new Color(70, 130, 180));
+        refreshBtn.setForeground(Color.BLACK);
+        refreshBtn.addActionListener(e -> refreshData());
 
         panel.add(titleLabel, BorderLayout.WEST);
-        panel.add(filterPanel, BorderLayout.EAST);
+        panel.add(refreshBtn, BorderLayout.EAST);
 
         return panel;
     }
@@ -154,7 +129,7 @@ public class ReportFrame extends JFrame {
         ));
 
         // Create pie chart
-        ChartPanel pieChartPanel = createPieChart();
+        pieChartPanel = createPieChart();
         chartPanel.add(pieChartPanel, BorderLayout.CENTER);
 
         // Add to left panel with split
@@ -172,8 +147,8 @@ public class ReportFrame extends JFrame {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBackground(new Color(40, 40, 50));
 
-        // Table
-        String[] columns = {"Date", "Cryptocurrency", "Price (USD)", "24h Change", "Volume"};
+        // Table - TAMPILKAN SEMUA COIN
+        String[] columns = {"No", "Name", "Symbol", "Price (USD)", "24h Change", "Category", "Last Updated"};
         tableModel = new DefaultTableModel(columns, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -186,17 +161,14 @@ public class ReportFrame extends JFrame {
         historyTable.setForeground(new Color(220, 220, 220));
         historyTable.setRowHeight(35);
         historyTable.getTableHeader().setBackground(new Color(50, 50, 60));
-        historyTable.getTableHeader().setForeground(Color.black);
+        historyTable.getTableHeader().setForeground(Color.BLACK);
         historyTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 12));
-
-        // Add some sample data
-        generateSampleHistoryData();
 
         JScrollPane scrollPane = new JScrollPane(historyTable);
         scrollPane.getViewport().setBackground(new Color(40, 40, 50));
         scrollPane.setBorder(BorderFactory.createTitledBorder(
                 BorderFactory.createLineBorder(new Color(70, 70, 80)),
-                "Price History",
+                "All Cryptocurrencies",
                 TitledBorder.LEFT,
                 TitledBorder.TOP,
                 new Font("Segoe UI", Font.BOLD, 14),
@@ -210,16 +182,11 @@ public class ReportFrame extends JFrame {
     private ChartPanel createPieChart() {
         DefaultPieDataset dataset = new DefaultPieDataset();
 
-        // Add sample data
-        dataset.setValue("Bitcoin", 40.5);
-        dataset.setValue("Ethereum", 18.2);
-        dataset.setValue("Binance Coin", 8.7);
-        dataset.setValue("Cardano", 6.3);
-        dataset.setValue("Solana", 5.8);
-        dataset.setValue("Others", 20.5);
+        // Add initial data
+        dataset.setValue("Loading...", 100);
 
         JFreeChart chart = ChartFactory.createPieChart(
-                "Market Cap Distribution",
+                "Market Distribution",
                 dataset,
                 true,
                 true,
@@ -237,12 +204,7 @@ public class ReportFrame extends JFrame {
         plot.setOutlinePaint(new Color(60, 60, 70));
 
         // Set colors for each slice
-        plot.setSectionPaint("Bitcoin", new Color(247, 147, 26));
-        plot.setSectionPaint("Ethereum", new Color(98, 126, 234));
-        plot.setSectionPaint("Binance Coin", new Color(240, 185, 11));
-        plot.setSectionPaint("Cardano", new Color(0, 130, 206));
-        plot.setSectionPaint("Solana", new Color(0, 255, 163));
-        plot.setSectionPaint("Others", new Color(128, 128, 128));
+        plot.setSectionPaint("Loading...", new Color(128, 128, 128));
 
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setBackground(new Color(40, 40, 50));
@@ -251,11 +213,17 @@ public class ReportFrame extends JFrame {
     }
 
     private void loadReportData() {
+        // Load fresh data
+        cryptoList = fileHandler.loadCryptocurrencies();
+
         // Generate summary
         generateSummary();
 
-        // Load history data
-        loadHistoryData();
+        // Load ALL coins to table
+        loadAllCoinsToTable();
+
+        // Update pie chart with real data
+        updatePieChart();
     }
 
     private void generateSummary() {
@@ -304,64 +272,97 @@ public class ReportFrame extends JFrame {
         summaryArea.setText(summary.toString());
     }
 
-    private void loadHistoryData() {
-        // Load from file or generate sample
-        generateSampleHistoryData();
-    }
-
-    private void generateSampleHistoryData() {
+    private void loadAllCoinsToTable() {
         tableModel.setRowCount(0);
 
-        String[] cryptoNames = {"Bitcoin", "Ethereum", "Binance Coin", "Cardano", "Solana"};
-        Random random = new Random();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        // Tampilkan SEMUA coin yang ada
+        for (int i = 0; i < cryptoList.size(); i++) {
+            Cryptocurrency crypto = cryptoList.get(i);
 
-        for (int i = 0; i < 20; i++) {
-            LocalDateTime date = LocalDateTime.now().minusHours(random.nextInt(168)); // Last 7 days
-            String crypto = cryptoNames[random.nextInt(cryptoNames.length)];
-            double price = 10000 + random.nextDouble() * 50000;
-            double change = (random.nextDouble() - 0.5) * 15;
-            double volume = 1000000 + random.nextDouble() * 9000000;
+            String change = crypto.getFormattedChange();
+            String changeDisplay = change;
+            if (change.contains("+")) {
+                changeDisplay = "▲ " + change;
+            } else if (change.contains("-")) {
+                changeDisplay = "▼ " + change;
+            }
 
             Object[] row = {
-                    date.format(formatter),
-                    crypto,
-                    String.format("$%,.2f", price),
-                    String.format("%+.2f%%", change),
-                    String.format("$%,.0f", volume)
+                    i + 1,
+                    crypto.getName(),
+                    crypto.getSymbol(),
+                    crypto.getFormattedPrice(),
+                    changeDisplay,
+                    crypto.getCategory(),
+                    crypto.getLastUpdated().toString().substring(0, 19)
             };
             tableModel.addRow(row);
         }
     }
 
-    private void filterHistory() {
-        String selectedCrypto = (String) cryptoFilterCombo.getSelectedItem();
-        String selectedDate = (String) dateFilterCombo.getSelectedItem();
+    private void updatePieChart() {
+        DefaultPieDataset dataset = new DefaultPieDataset();
 
-        // In a real application, this would filter the actual data
-        // For demo, we'll just regenerate sample data
-        generateSampleHistoryData();
+        if (cryptoList.isEmpty()) {
+            dataset.setValue("No Data", 100);
+        } else {
+            // Tampilkan top 5 coins di pie chart
+            List<Cryptocurrency> sortedList = new ArrayList<>(cryptoList);
+            sortedList.sort((c1, c2) -> Double.compare(c2.getCurrentPrice(), c1.getCurrentPrice()));
 
-        // Update summary based on filter
-        generateSummary();
-    }
+            int count = Math.min(5, sortedList.size());
+            for (int i = 0; i < count; i++) {
+                Cryptocurrency crypto = sortedList.get(i);
+                dataset.setValue(crypto.getSymbol(), crypto.getCurrentPrice());
+            }
 
-    private void exportReport() {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Export Report");
-        fileChooser.setSelectedFile(new File("crypto_report_" +
-                LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss")) + ".txt"));
-
-        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-            try {
-                // Export summary and history to file
-                // Implementation would write data to selected file
-                JOptionPane.showMessageDialog(this, "Report exported successfully!",
-                        "Success", JOptionPane.INFORMATION_MESSAGE);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error exporting report: " + e.getMessage(),
-                        "Error", JOptionPane.ERROR_MESSAGE);
+            // Sisanya sebagai "Others"
+            double othersTotal = 0;
+            for (int i = count; i < sortedList.size(); i++) {
+                othersTotal += sortedList.get(i).getCurrentPrice();
+            }
+            if (othersTotal > 0) {
+                dataset.setValue("Others", othersTotal);
             }
         }
+
+        // Update chart
+        PiePlot plot = (PiePlot) pieChartPanel.getChart().getPlot();
+        plot.setDataset(dataset);
+
+        // Update chart title
+        pieChartPanel.getChart().setTitle("Market Distribution (Top " + Math.min(5, cryptoList.size()) + ")");
+
+        // Set colors
+        String[] colors = {"#F7931A", "#627EEA", "#F0B90B", "#0082CE", "#00FFA3", "#808080"};
+        int colorIndex = 0;
+        for (Object key : dataset.getKeys()) {
+            plot.setSectionPaint(key.toString(), Color.decode(colors[colorIndex % colors.length]));
+            colorIndex++;
+        }
+    }
+
+    private void refreshData() {
+        refreshBtn.setEnabled(false);
+        refreshBtn.setText("Refreshing...");
+
+        new Thread(() -> {
+            try {
+                loadReportData();
+
+                SwingUtilities.invokeLater(() -> {
+                    refreshBtn.setEnabled(true);
+                    refreshBtn.setText("Refresh");
+                    setTitle("Cryptocurrency Report - Updated: " +
+                            LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
+                });
+
+            } catch (Exception e) {
+                SwingUtilities.invokeLater(() -> {
+                    refreshBtn.setEnabled(true);
+                    refreshBtn.setText("Refresh");
+                });
+            }
+        }).start();
     }
 }

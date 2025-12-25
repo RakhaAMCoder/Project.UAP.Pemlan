@@ -24,7 +24,7 @@ public class SidebarPanel extends JPanel {
         logoPanel.setBackground(new Color(40, 40, 50));
         logoPanel.setBorder(new EmptyBorder(0, 0, 30, 0));
 
-        JLabel logoLabel = new JLabel("CRYPTO DASH");
+        JLabel logoLabel = new JLabel("CRYPTOCURRENCY");
         logoLabel.setFont(new Font("Segoe UI", Font.BOLD, 20));
         logoLabel.setForeground(new Color(70, 130, 180));
         logoPanel.add(logoLabel);

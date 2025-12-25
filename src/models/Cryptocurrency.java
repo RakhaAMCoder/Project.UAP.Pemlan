@@ -11,7 +11,6 @@ public class Cryptocurrency {
     private double priceChange24h;
     private double priceChangePercentage24h;
     private LocalDateTime lastUpdated;
-    private boolean isFavorite;
 
     public Cryptocurrency(String id, String name, String symbol, String category) {
         this.id = id;
@@ -22,7 +21,6 @@ public class Cryptocurrency {
         this.priceChange24h = 0.0;
         this.priceChangePercentage24h = 0.0;
         this.lastUpdated = LocalDateTime.now();
-        this.isFavorite = false;
     }
 
     // Constructor tanpa ID (untuk generate otomatis)
@@ -64,9 +62,6 @@ public class Cryptocurrency {
     }
 
     public LocalDateTime getLastUpdated() { return lastUpdated; }
-
-    public boolean isFavorite() { return isFavorite; }
-    public void setFavorite(boolean favorite) { isFavorite = favorite; }
 
     public String getStatus() {
         return priceChangePercentage24h >= 0 ? "Naik" : "Turun";

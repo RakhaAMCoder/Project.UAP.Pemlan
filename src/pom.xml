@@ -21,7 +21,5 @@
             <artifactId>jfreechart</artifactId>
             <version>1.5.3</version>
         </dependency>
-
-        <!-- Tidak perlu OkHttp dan Gson untuk versi sederhana -->
     </dependencies>
 </project>

@@ -16,11 +16,11 @@ public class APIService {
         switch (cryptoId.toLowerCase()) {
             case "bitcoin":
             case "btc":
-                basePrice = 35000 + random.nextDouble() * 10000;
+                basePrice = 40000 + random.nextDouble() * 10000;
                 break;
             case "ethereum":
             case "eth":
-                basePrice = 2500 + random.nextDouble() * 500;
+                basePrice = 11000 + random.nextDouble() * 500;
                 break;
             case "binancecoin":
             case "bnb":
@@ -32,7 +32,7 @@ public class APIService {
                 break;
             case "solana":
             case "sol":
-                basePrice = 100 + random.nextDouble() * 20;
+                basePrice = 2000 + random.nextDouble() * 20;
                 break;
             case "ripple":
             case "xrp":
@@ -55,7 +55,7 @@ public class APIService {
                 basePrice = 14 + random.nextDouble() * 3;
                 break;
             default:
-                basePrice = 100 + random.nextDouble() * 100;
+                basePrice = 1000 + random.nextDouble() * 100;
         }
 
         // Tambahkan fluktuasi kecil untuk simulasi real-time
