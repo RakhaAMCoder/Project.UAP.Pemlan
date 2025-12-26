@@ -41,7 +41,7 @@ public class DataInputFrame extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         initUI();
-    }
+    } //
 
     private void initUI() {
         JPanel mainPanel = new JPanel(new BorderLayout());
