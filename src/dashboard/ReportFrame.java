@@ -216,13 +216,10 @@ public class ReportFrame extends JFrame {
         // Load fresh data
         cryptoList = fileHandler.loadCryptocurrencies();
 
-        // Generate summary
         generateSummary();
 
-        // Load ALL coins to table
         loadAllCoinsToTable();
 
-        // Update pie chart with real data
         updatePieChart();
     }
 
@@ -316,7 +313,6 @@ public class ReportFrame extends JFrame {
                 dataset.setValue(crypto.getSymbol(), crypto.getCurrentPrice());
             }
 
-            // Sisanya sebagai "Others"
             double othersTotal = 0;
             for (int i = count; i < sortedList.size(); i++) {
                 othersTotal += sortedList.get(i).getCurrentPrice();

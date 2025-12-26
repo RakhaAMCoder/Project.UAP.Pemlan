@@ -23,7 +23,6 @@ public class Cryptocurrency {
         this.lastUpdated = LocalDateTime.now();
     }
 
-    // Constructor tanpa ID (untuk generate otomatis)
     public Cryptocurrency(String name, String symbol, String category) {
         this(generateId(symbol), name, symbol, category);
     }

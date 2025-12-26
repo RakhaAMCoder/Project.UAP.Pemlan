@@ -6,7 +6,6 @@ import java.util.*;
 import java.time.format.DateTimeFormatter;
 
 public class FileHandler {
-    // Simpan di project folder saja (tidak perlu src/FileData)
     private static final String CRYPTO_FILE = "cryptocurrencies.csv";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
@@ -171,33 +170,5 @@ public class FileHandler {
             return "\"" + value.replace("\"", "\"\"") + "\"";
         }
         return value;
-    }
-
-    // ========== CRUD HELPER METHODS (OPSIONAL) ==========
-
-    public boolean updateCryptocurrency(Cryptocurrency updatedCrypto) {
-        List<Cryptocurrency> cryptoList = loadCryptocurrencies();
-
-        for (int i = 0; i < cryptoList.size(); i++) {
-            if (cryptoList.get(i).getId().equals(updatedCrypto.getId())) {
-                cryptoList.set(i, updatedCrypto);
-                return saveCryptocurrencies(cryptoList);
-            }
-        }
-
-        return false;
-    }
-
-    public boolean deleteCryptocurrency(String cryptoId) {
-        List<Cryptocurrency> cryptoList = loadCryptocurrencies();
-        int initialSize = cryptoList.size();
-
-        cryptoList.removeIf(crypto -> crypto.getId().equals(cryptoId));
-
-        if (cryptoList.size() < initialSize) {
-            return saveCryptocurrencies(cryptoList);
-        }
-
-        return false;
     }
 }

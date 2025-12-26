@@ -76,14 +76,9 @@ crypto-dashboard/
 │   │   └── ReportFrame.java              # Reports page
 │   ├── models/                           # Data models
 │   │   ├── Cryptocurrency.java           # Cryptocurrency model
-│   │   └── PriceHistory.java             # Price history model
 │   ├── services/                         # Business logic
 │   │   ├── FileHandler.java              # File I/O operations
-│   │   ├── APIService.java               # Price data simulation
-│   │   └── ChartGenerator.java           # Chart generator
-│   └── utils/                            # Utilities
-│       ├── Constants.java                # Application constants
-│       └── UIUtils.java                  # UI helpers
+│   │   └── APIService.java               # Price data simulation
 │── README.md                             # This documentation
 └── cryptocurrencies.csv                  # Cryptocurrency data
 ```

@@ -62,24 +62,4 @@ public class APIService {
         double fluctuation = (random.nextDouble() - 0.5) * 0.02; // ±1%
         return basePrice * (1 + fluctuation);
     }
-
-    // Simulasi perubahan harga 24 jam
-    public double getPriceChange24h(String cryptoId) {
-        return (random.nextDouble() - 0.5) * 10; // ±5%
-    }
-
-    // Simulasi data untuk grafik
-    public double[] getHistoricalData(String cryptoId, int points) {
-        double[] data = new double[points];
-        double basePrice = getCryptoPrice(cryptoId);
-
-        for (int i = 0; i < points; i++) {
-            // Buat tren dengan sedikit randomness
-            double trend = (i - points/2.0) / points * 0.1;
-            double noise = (random.nextDouble() - 0.5) * 0.02;
-            data[i] = basePrice * (1 + trend + noise);
-        }
-
-        return data;
-    }
 }
